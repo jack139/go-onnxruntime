@@ -9,23 +9,31 @@ import (
 	"github.com/ivansuteja96/go-onnxruntime"
 )
 
+// LD_LIBRARY_PATH=/usr/local/lib go run predict_example.go
 func main() {
 	ortEnvDet := onnxruntime.NewORTEnv(onnxruntime.ORT_LOGGING_LEVEL_VERBOSE, "development")
 	ortDetSO := onnxruntime.NewORTSessionOptions()
 
-	detModel, err := onnxruntime.NewORTSession(ortEnvDet, "/tmp/model/model.onnx", ortDetSO)
+	detModel, err := onnxruntime.NewORTSession(ortEnvDet, "../../model.onnx", ortDetSO)
 	if err != nil {
 		log.Println(err)
 		return
 	}
 
-	shape := []int64{3, 4, 5}
-	input := randFloats(0, 1, int(shape[0]*shape[1]*shape[2]))
+	shape1 := []int64{3, 4}
+	input1 := randFloats(0, 1, int(shape1[0]*shape1[1]))
+
+	shape2 := []int64{4, 3}
+	input2 := randFloats(0, 1, int(shape2[0]*shape2[1]))
 
 	res, err := detModel.Predict([]onnxruntime.TensorValue{
 		{
-			Value: input,
-			Shape: shape,
+			Value: input1,
+			Shape: shape1,
+		},
+		{
+			Value: input2,
+			Shape: shape2,
 		},
 	})
 	if err != nil {
