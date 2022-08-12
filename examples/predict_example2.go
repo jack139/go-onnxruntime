@@ -16,14 +16,14 @@ func main() {
 	ortEnvDet := onnxruntime.NewORTEnv(onnxruntime.ORT_LOGGING_LEVEL_VERBOSE, "development")
 	ortDetSO := onnxruntime.NewORTSessionOptions()
 
-	detModel, err := onnxruntime.NewORTSession(ortEnvDet, "../../../multinfer/data/det_10g.onnx", ortDetSO)
+	detModel, err := onnxruntime.NewORTSession(ortEnvDet, "../../multinfer/data/det_10g.onnx", ortDetSO)
 	if err != nil {
 		log.Println(err)
 		return
 	}
 
 	shape1 := []int64{1, 3, 640, 640}
-	input1 := preprocessImage("../../5.jpg", 640)
+	input1 := preprocessImage("../../source/5.jpg", 640)
 	//input1 := randFloats(0, 1, int(shape1[0]*shape1[1]*shape1[2]*shape1[3]))
 
 

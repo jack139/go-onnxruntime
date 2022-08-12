@@ -14,7 +14,7 @@ func main() {
 	ortEnvDet := onnxruntime.NewORTEnv(onnxruntime.ORT_LOGGING_LEVEL_VERBOSE, "development")
 	ortDetSO := onnxruntime.NewORTSessionOptions()
 
-	detModel, err := onnxruntime.NewORTSession(ortEnvDet, "../../model.onnx", ortDetSO)
+	detModel, err := onnxruntime.NewORTSession(ortEnvDet, "../../source/model.onnx", ortDetSO)
 	if err != nil {
 		log.Println(err)
 		return
