@@ -11,7 +11,7 @@ import (
 	"github.com/disintegration/imaging"
 )
 
-// LD_LIBRARY_PATH=/usr/local/lib go run predict_example.go
+// LD_LIBRARY_PATH=/usr/local/lib go run predict_example2.go
 func main() {
 	ortEnvDet := onnxruntime.NewORTEnv(onnxruntime.ORT_LOGGING_LEVEL_VERBOSE, "development")
 	ortDetSO := onnxruntime.NewORTSessionOptions()
